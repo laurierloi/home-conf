@@ -53,15 +53,90 @@ nmap <leader>se :setlocal spell spelllang=en_us
 "   ]s pour aller au prochain mot mal orthographié
 "   [s pour le précédent
 
-""" PLUGIN KEY MAPPING """
-" NerdTree
+""" PLUGIN Configuration And Key mapping """
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NerdTree
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeWinPos = "right"
+let NERDTreeShowHidden=0
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+let g:NERDTreeWinSize=35
 nmap <leader>nn :NERDTreeToggle<cr>
 nmap <leader>nb :NERDTreeFromBookmark<Space>
 nmap <leader>nf :NERDTreeFind<cr>
 
-" fzf-lua
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => fzf-lua
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <c-P> <cmd>lua require('fzf-lua').files()<CR>
+nnoremap <c-F> <cmd>lua require('fzf-lua').builtin()<CR>
 nnoremap <leader>fr <cmd>lua require('fzf-lua').resume()<CR>
 nnoremap <leader>fb <cmd>lua require('fzf-lua').builtin()<CR>
 nnoremap <leader>ff <cmd>lua require('fzf-lua').files()<CR>
-nnoremap <leader>fg <cmd>lua require('fzf-lua').grep()<CR>
+nnoremap <leader>g <cmd>lua require('fzf-lua').grep()<CR>
 
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Shell
+" Properly use the colors in vim
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if exists('$TMUX')
+    if has('nvim')
+        set termguicolors
+    else
+        set term=screen-256color
+    endif
+endif
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Ale (syntax checker and linter)
+"
+" For python: pip install python-lsp-server
+" For rust, see: https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_linters = {
+\   'javascript': ['jshint'],
+\   'python': ['pylsp'],
+\   'go': ['go', 'golint', 'errcheck'],
+\   'robot': ['robocop'],
+\   'rust': ['analyzer'],
+\   'c': [],
+\}
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'rust': ['rustfmt'],
+\   'python': ['autopep8'],
+\}
+" extra fixers
+"\   'python': ['isort', 'autopep8'],
+
+" Disabling highlighting
+let g:ale_set_highlights = 1
+
+" Only run linting when saving the file
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_insert_leave = 1
+let g:ale_fix_on_save = 1
+
+let g:ale_completion_enabled = 1
+
+let g:ale_python_auto_virtualenv = 1
+
+" Show errors in the preview window, but exit on inert
+let g:ale_cursor_detail = 1
+let g:ale_close_preview_on_insert = 1
+
+let g:ale_rust_analyzer_executable='/home/lal/.local/bin/rust-analyzer'
+
+" define shortkeys
+nmap <silent> <leader>lr :ALEFindReferences<cr>
+nmap <silent> <leader>lg :ALEGoToDefinition<cr>
+nmap <silent> <leader>li :ALEGoToImplementation<cr>
+nmap <silent> <leader>ld :ALEDetail<cr>
+nmap <silent> <leader>ln :ALENextWrap<cr>
+nmap <silent> <leader>lp :ALEPreviousWrap<cr>
+nmap <silent> <leader>lk :ALENext<cr>
+nmap <silent> <leader>lj :ALEPrevious<cr>
+nmap <silent> <leader>ls :ALESymbolSearch<cr>

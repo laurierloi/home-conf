@@ -3,7 +3,9 @@ let g:lightline = {
   \ 'active': {
   \   'left': [ ['mode', 'paste'],
   \             ['fugitive', 'readonly', 'filename', 'modified'] ],
-  \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype'] ]
+  \   'right': [ [ 'lineinfo' ],
+  \              [ 'percent' ],
+  \              [ 'fileformat', 'fileencoding', 'filetype'] ]
   \ },
   \ 'tabline': {
   \   'left': [ ['buffers']  ],
@@ -20,20 +22,10 @@ let g:lightline = {
   \   'fugitive': '(exists("*FugitiveHead") && ""!=FugitiveHead())'
   \ },
   \ 'component_expand': {
-  \   'buffers': 'lightline#bufferline#buffers',
-  \   'linter_hints': 'lightline#lsp#hints',
-  \   'linter_infos': 'lightline#lsp#infos',
-  \   'linter_warnings': 'lightline#lsp#warnings',
-  \   'linter_errors': 'lightline#lsp#errors',
-  \   'linter_ok': 'lightline#lsp#ok'
+  \   'buffers': 'lightline#bufferline#buffers'
   \ },
   \ 'component_type': {
-  \   'buffers': 'tabsel',
-  \   'linter_hints': 'right',
-  \   'linter_infos': 'right',
-  \   'linter_warnings': 'warning',
-  \   'linter_errors': 'error',
-  \   'linter_ok': 'right'
+  \   'buffers': 'tabsel'
   \ },
   \ 'separator': { 'left': ' ', 'right': ' ' },
   \ 'subseparator': { 'left': ' ', 'right': ' ' }
