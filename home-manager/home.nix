@@ -32,6 +32,8 @@
     # tree-sitter
     tree-sitter # see bindings: https://tree-sitter.github.io/tree-sitter/
 
+    github-copilot-cli # todo set up
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -111,7 +113,7 @@
       shortcut = "b";
       terminal = "screen-256color";
       extraConfig = ''
-          # to have vi copy mode from: https://superuser.com/a/693990 
+          # to have vi copy mode from: https://superuser.com/a/693990
           unbind-key -T copy-mode-vi v
           bind-key -T copy-mode-vi 'v' send -X begin-selection     # Begin selection in copy mode.
           bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle  # Begin selection in copy mode.
@@ -160,6 +162,16 @@
         vim-tmux-navigator
 	#vimux # run commans in tmux from vim
 	#tmux-nvim # TBD
+
+	# AI
+	copilot-vim
+	# 3 below use a different plugin, but seem to have interesting features
+	# copilot-lua
+	# copilot-cmp
+	# copilot-lualine
+
+	# Allow chat with copilot? cool stuff...
+	# CopilotChat-nvim
 
 	# linting
 	ale
@@ -216,9 +228,8 @@
       autosuggestion.enable = true;
       history.size=10000;
       shellAliases = { # Add aliases here
-	hm = "home-manager";
-	hme = "home-manager edit";
-	hms = "home-manager switch --flake /home/lal/sw/home-conf";
+        hm = "NIXPKGS_ALLOW_UNFREE=1 home-manager --impure --flake /home/lal/sw/home-conf";
+        hms = "NIXPKGS_ALLOW_UNFREE=1 home-manager --impure --flake /home/lal/sw/home-conf switch";
       };
       syntaxHighlighting = {
         enable = true;
