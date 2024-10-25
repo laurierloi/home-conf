@@ -14,8 +14,6 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " vsplit
 " USE ':vs' and ':sp'
-"nmap <silent> <leader>sv :vsplit<cr>
-"nmap <silent> <leader>sh :split<cr>
 
 " Tab behavior for different file formats
 autocmd FileType robot          setlocal shiftwidth=8 softtabstop=8 tabstop=8 noexpandtab
@@ -27,6 +25,7 @@ autocmd FileType css            setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType yaml           setlocal shiftwidth=2 softtabstop=2 expandtab textwidth=100
 autocmd FileType markdown       setlocal shiftwidth=2 softtabstop=2 noexpandtab textwidth=100
 autocmd FileType nix            setlocal shiftwidth=2 softtabstop=2 noexpandtab textwidth=100
+autocmd FileType vim            setlocal shiftwidth=2 softtabstop=2 noexpandtab textwidth=100
 
 " quickfix window full width
 :autocmd FileType qf wincmd J

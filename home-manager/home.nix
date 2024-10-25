@@ -148,7 +148,7 @@
       vimAlias = true;
       vimdiffAlias = true;
 
-      extraConfig = (builtins.readFile ./vim/vimrc);
+      extraConfig = (builtins.readFile ./vim/vimrc.vim);
 
       plugins = with pkgs.vimPlugins; [
 	{
@@ -219,8 +219,8 @@
       # to add
       # https://github.com/tpope/vim-obsession    # This will support resurrect for vim/nvim
 
-
     };
+
     zsh = {
       enable = true;
       enableCompletion = true;
