@@ -26,6 +26,7 @@
     delta
     entr
     ripgrep
+    tig
 
     # tree-sitter
     tree-sitter # see bindings: https://tree-sitter.github.io/tree-sitter/
@@ -89,6 +90,10 @@
 
   services = {
     ssh-agent.enable = true;
+    gpg-agent = {
+      enable = true;
+
+    };
   };
 
   # Let Home Manager install and manage itself.
@@ -287,10 +292,18 @@
       };
     };
 
+    gpg = {
+      enable = true;
+    };
+
     git = {
       enable = true;
       userName = "Laurier Loiselle";
       userEmail = "lal@xiphos.com";
+      signing = {
+	signByDefault = true;
+	key = "0C5C521BAEA0FD293847498252C802C1A7A0454E";
+      };
       delta = {
 	enable = true;
 	options = {
