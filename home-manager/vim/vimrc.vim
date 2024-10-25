@@ -96,7 +96,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_linters = {
 \   'javascript': ['jshint'],
-\   'python': ['pylsp'],
+\   'python': ['ruff'],
 \   'go': ['go', 'golint', 'errcheck'],
 \   'robot': ['robocop'],
 \   'rust': ['analyzer'],
@@ -106,10 +106,8 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'rust': ['rustfmt'],
-\   'python': ['autopep8'],
+\   'python': ['ruff_format'],
 \}
-" extra fixers
-"\   'python': ['isort', 'autopep8'],
 
 " Disabling highlighting
 let g:ale_set_highlights = 1
@@ -121,14 +119,19 @@ let g:ale_lint_on_insert_leave = 1
 let g:ale_fix_on_save = 1
 
 let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+let g:ale_sign_column_always = 1
 
 let g:ale_python_auto_virtualenv = 1
+
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = ''
 
 " Show errors in the preview window, but exit on inert
 let g:ale_cursor_detail = 1
 let g:ale_close_preview_on_insert = 1
 
-let g:ale_rust_analyzer_executable='/home/lal/.local/bin/rust-analyzer'
+" ket g:ale_rust_analyzer_executable='/home/lal/.local/bin/rust-analyzer'
 
 " define shortkeys
 nmap <silent> <leader>lr :ALEFindReferences<cr>
