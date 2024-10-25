@@ -80,7 +80,6 @@
     EDITOR = "nvim";
   };
 
-  #nix.settings.experimental-features = [ "nix-command" "flakes" ];
   targets.genericLinux.enable = true;
 
   nix = {
@@ -274,7 +273,7 @@
       shellAliases = { # Add aliases here
 	hm = "home-manager";
 	hme = "home-manager edit";
-	hms = "home-manager switch";
+	hms = "home-manager switch --flake /home/lal/sw/home-conf";
       };
       syntaxHighlighting = {
         enable = true;
