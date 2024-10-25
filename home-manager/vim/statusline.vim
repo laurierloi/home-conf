@@ -33,4 +33,3 @@ let g:lightline = {
 
 let g:lightline#bufferline#show_number=1
 let g:lightline#bufferline#clickable=1
-let g:lightline.component_raw = {'buffers': 1}

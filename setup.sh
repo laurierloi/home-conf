@@ -1,4 +1,3 @@
 # Reference used: https://www.chrisportela.com/posts/home-manager-flake/
-nix run . -- build --flake .
-nix run . -- switch --flake .
-
+NIXPKGS_ALLOW_UNFREE=1 nix run . -- build --impure --flake .
+NIXPKGS_ALLOW_UNFREE=1 nix run . -- switch --impure --flake .
