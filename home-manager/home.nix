@@ -87,6 +87,10 @@
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
+  services = {
+    ssh-agent.enable = true;
+  };
+
   # Let Home Manager install and manage itself.
   programs = {
     home-manager.enable = true;
@@ -139,7 +143,7 @@
       vimAlias = true;
       vimdiffAlias = true;
 
-      extraConfig = (readFile ./config/vimrc);
+      extraConfig = (builtins.readFile ./config/vimrc);
 
       plugins = with pkgs.vimPlugins; [
 	{
