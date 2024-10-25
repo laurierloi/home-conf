@@ -151,14 +151,7 @@
       extraConfig = (builtins.readFile ./vim/vimrc.vim);
 
       plugins = with pkgs.vimPlugins; [
-	{
-	  plugin = fzf-lua;
-	  config = ''
-	    nnoremap <c-P> <cmd>lua require('fzf-lua').files()<CR>
-	    nnoremap <c-F> <cmd>lua require('fzf-lua').builtin()<CR>
-	  '';
-	}
-
+	fzf-lua
 
 	#nvim-dap # This would require some setup, to use debug-adapter-protocol (dap)
 	vim-startify
@@ -168,37 +161,8 @@
 	#vimux # run commans in tmux from vim
 	#tmux-nvim # TBD
 
-	# style
-	nvim-web-devicons
-
-	# lightline
-	lightline-bufferline
-	lightline-lsp # todo: check if this config is good.... https://github.com/spywhere/lightline-lsp/
-	{
-	  plugin = lightline-vim;
-	  config = (builtins.readFile ./vim/statusline.vim);
-	}
-
-	# utility
-	vim-matchup # '%' match syntaxic elements
-        {
-          plugin = nerdtree;
-          config = ''
-            let g:NERDTreeWinPos = "right"
-            let NERDTreeShowHidden=0
-            let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-            let g:NERDTreeWinSize=35
-          '';
-        }
-
-	# tpopope ... because that's just how good
-	vim-speeddating
-	vim-fugitive
-	vim-surround
-	vim-commentary
-	#vim-dadbod # db management would need to learn
-	#vim-dispatch # can run command in tmux from vim, maybe start pytest?
-
+	# linting
+	ale
 	# Syntax
 	nvim-treesitter.withAllGrammars
 
@@ -209,6 +173,31 @@
 
 	# lsp
 	nvim-lspconfig
+
+	# style
+	nvim-web-devicons
+
+	# lightline
+	lightline-ale # todo: configure
+	lightline-bufferline
+	lightline-lsp # todo: check if this config is good.... https://github.com/spywhere/lightline-lsp/
+	{
+	  plugin = lightline-vim;
+	  config = (builtins.readFile ./vim/statusline.vim);
+	}
+
+	# utility
+	vim-matchup # '%' match syntaxic elements
+	nerdtree
+
+	# tpopope ... because that's just how good
+	vim-speeddating
+	vim-fugitive
+	vim-surround
+	vim-commentary
+	#vim-dadbod # db management would need to learn
+
+	#vim-dispatch # can run command in tmux from vim, maybe start pytest?
 
 
 	# TBD
