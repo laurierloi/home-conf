@@ -16,7 +16,7 @@
       homeConfigurations = {
           lal = home-manager.lib.homeManagerConfiguration {
               pkgs = import nixpkgs { system = "x86_64-linux"; };
-              modules = [ ./home.nix ];
+              modules = [ ./home-manager/home.nix ];
           };
       };
   };
