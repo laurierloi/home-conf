@@ -102,33 +102,12 @@
       mouse = true;
       shortcut = "b";
       terminal = "screen-256color";
-      extraConfig = ''
-          # to have vi copy mode from: https://superuser.com/a/693990
-          unbind-key -T copy-mode-vi v
-          bind-key -T copy-mode-vi 'v' send -X begin-selection     # Begin selection in copy mode.
-          bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle  # Begin selection in copy mode.
-          bind-key -T copy-mode-vi 'y' send -X copy-selection      # Yank selection in copy mode.
-          bind-key Enter copy-mode
-      ''; # Any extra configuration to add into the configuration file
+      extraConfig = (builtins.readFile ./tmux/tmux.conf);
       plugins = with pkgs.tmuxPlugins; [
         open
-	vim-tmux-navigator
-        {
-          plugin = resurrect;
-          extraConfig = ''
-            set -g @resurrect-strategy-nvim 'session'
-            set -g @resurrect-capture-pane-contents 'on'
-            # see https://github.com/tmux-plugins/tmux-resurrect/blob/master/docs/restoring_programs.md
-            set -g @resurrect-processes 'ssh "~python3 -m http.server"'
-          '';
-        }
-        {
-          plugin = continuum;
-          extraConfig = ''
-            set -g @continuum-restore 'on'
-            set -g @continuum-save-interval '30'
-          '';
-        }
+        vim-tmux-navigator
+        resurrect
+        continuum
       ];
     };
 
@@ -143,68 +122,68 @@
       extraConfig = (builtins.readFile ./vim/vimrc.vim);
 
       plugins = with pkgs.vimPlugins; [
-	fzf-lua
+        fzf-lua
 
-	#nvim-dap # This would require some setup, to use debug-adapter-protocol (dap)
-	vim-startify
+        #nvim-dap # This would require some setup, to use debug-adapter-protocol (dap)
+        vim-startify
 
-	# tmux integration
+        # tmux integration
         vim-tmux-navigator
-	#vimux # run commans in tmux from vim
-	#tmux-nvim # TBD
+        #vimux # run commans in tmux from vim
+        #tmux-nvim # TBD
 
-	# AI
-	copilot-vim
-	# 3 below use a different plugin, but seem to have interesting features
-	# copilot-lua
-	# copilot-cmp
-	# copilot-lualine
+        # AI
+        copilot-vim
+        # 3 below use a different plugin, but seem to have interesting features
+        # copilot-lua
+        # copilot-cmp
+        # copilot-lualine
 
-	# Allow chat with copilot? cool stuff...
-	# CopilotChat-nvim
+        # Allow chat with copilot? cool stuff...
+        # CopilotChat-nvim
 
-	# linting
-	ale
-	# Syntax
-	nvim-treesitter.withAllGrammars
+        # linting
+        ale
+        # Syntax
+        nvim-treesitter.withAllGrammars
 
-	# Languages
+        # Languages
         vim-nix
-	vim-tmux
-	robotframework-vim
+        vim-tmux
+        robotframework-vim
 
-	# lsp
-	nvim-lspconfig
+        # lsp
+        nvim-lspconfig
 
-	# style
-	nvim-web-devicons
+        # style
+        nvim-web-devicons
 
-	# lightline
-	lightline-ale # todo: configure
-	lightline-bufferline
-	lightline-lsp # todo: check if this config is good.... https://github.com/spywhere/lightline-lsp/
-	{
-	  plugin = lightline-vim;
-	  config = (builtins.readFile ./vim/statusline.vim);
-	}
+        # lightline
+        lightline-ale # todo: configure
+        lightline-bufferline
+        lightline-lsp # todo: check if this config is good.... https://github.com/spywhere/lightline-lsp/
+        {
+          plugin = lightline-vim;
+          config = (builtins.readFile ./vim/statusline.vim);
+        }
 
-	# utility
-	vim-matchup # '%' match syntaxic elements
-	nerdtree
+        # utility
+        vim-matchup # '%' match syntaxic elements
+        nerdtree
 
-	# tpopope ... because that's just how good
-	vim-speeddating
-	vim-fugitive
-	vim-surround
-	vim-commentary
-	#vim-dadbod # db management would need to learn
+        # tpopope ... because that's just how good
+        vim-speeddating
+        vim-fugitive
+        vim-surround
+        vim-commentary
+        #vim-dadbod # db management would need to learn
 
-	#vim-dispatch # can run command in tmux from vim, maybe start pytest?
+        #vim-dispatch # can run command in tmux from vim, maybe start pytest?
 
 
-	# TBD
-	# vim-prettier
-	# vim-orgmode
+        # TBD
+        # vim-prettier
+        # vim-orgmode
       ];
 
       # to add
@@ -246,13 +225,13 @@
       userName = "Laurier Loiselle";
       userEmail = "lal@xiphos.com";
       signing = {
-	signByDefault = true;
-	key = "0C5C521BAEA0FD293847498252C802C1A7A0454E";
+        signByDefault = true;
+        key = "0C5C521BAEA0FD293847498252C802C1A7A0454E";
       };
       delta = {
-	enable = true;
-	options = {
-	};
+        enable = true;
+        options = {
+        };
       };
     };
 
